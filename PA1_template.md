@@ -1,11 +1,54 @@
+# Reproducible Research: Peer Assessment 1
+
 Load packages
 
 ```r
 library(ggplot2)
+```
+
+```
+## Warning: package 'ggplot2' was built under R version 3.1.3
+```
+
+```r
 library(plyr)
+```
+
+```
+## Warning: package 'plyr' was built under R version 3.1.3
+```
+
+```r
 library(lubridate)
+```
+
+```
+## Warning: package 'lubridate' was built under R version 3.1.3
+```
+
+```
+## 
+## Attaching package: 'lubridate'
+## 
+## The following object is masked from 'package:plyr':
+## 
+##     here
+```
+
+```r
 library(lattice)
+```
+
+```
+## Warning: package 'lattice' was built under R version 3.1.3
+```
+
+```r
 library(knitr)
+```
+
+```
+## Warning: package 'knitr' was built under R version 3.1.3
 ```
 
 ## Loading and preprocessing the data
@@ -34,7 +77,7 @@ steps_day <- tapply(data$steps,data$date,function(x) sum(x,na.rm=TRUE))
 hist(steps_day, breaks = 15, xlab="Number of Steps", main="Daily Steps")
 ```
 
-![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3-1.png) 
+![](PA1_template_files/figure-html/unnamed-chunk-3-1.png) 
 
 ```r
 #Mean total number of steps taken per day:
@@ -80,7 +123,7 @@ xyplot(steps_pattern$average_steps ~ steps_pattern$interval,
        main = "Time Series Plot", lwd = 2)
 ```
 
-![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-1.png) 
+![](PA1_template_files/figure-html/unnamed-chunk-7-1.png) 
 
 
 ```r
@@ -131,18 +174,18 @@ daily_steps_fill <- tapply(data_fill$steps,data_fill$date,function(x) sum(x,na.r
 hist(daily_steps_fill, breaks = 15, col="blue",xlab="Number of Steps (Mean = NAs)", main="Daily Steps")
 ```
 
-![plot of chunk unnamed-chunk-12](figure/unnamed-chunk-12-1.png) 
+![](PA1_template_files/figure-html/unnamed-chunk-12-1.png) 
 
 
 ```r
 qplot(daily_steps_fill-steps_day, binwidth = 1000, xlab='Total steps', ylab='Frequency')
 ```
 
-![plot of chunk unnamed-chunk-13](figure/unnamed-chunk-13-1.png) 
+![](PA1_template_files/figure-html/unnamed-chunk-13-1.png) 
 
 ## Are there differences in activity patterns between weekdays and weekends?
 
-The dataset with the filled-in missing values is used. 1. A new factor variable is created in the dataset with two levels – “weekday” and “weekend” indicating whether a given date is a weekday or weekend day. 2. A panel plot containing a time series plot (i.e. type = “l” ) of the 5-minute interval (x-axis) and the average number of steps taken is constructed, averaged across all weekday days or weekend days (y-axis).
+The dataset with the filled-in missing values is used. 1. A new factor variable is created in the dataset with two levels вЂ“ вЂњweekdayвЂќ and вЂњweekendвЂќ indicating whether a given date is a weekday or weekend day. 2. A panel plot containing a time series plot (i.e. type = вЂњlвЂќ ) of the 5-minute interval (x-axis) and the average number of steps taken is constructed, averaged across all weekday days or weekend days (y-axis).
 
 
 ```r
@@ -161,7 +204,7 @@ ggplot(averages, aes(interval, steps)) + geom_line() + facet_grid(day ~ .)+
   xlab("5-minute interval") + ylab("Number of steps")
 ```
 
-![plot of chunk unnamed-chunk-14](figure/unnamed-chunk-14-1.png) 
+![](PA1_template_files/figure-html/unnamed-chunk-14-1.png) 
 
 There are no obvious differences in activity patterns between weekdays and weekends.
 
