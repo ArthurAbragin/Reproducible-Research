@@ -4,51 +4,10 @@ Load packages
 
 ```r
 library(ggplot2)
-```
-
-```
-## Warning: package 'ggplot2' was built under R version 3.1.3
-```
-
-```r
 library(plyr)
-```
-
-```
-## Warning: package 'plyr' was built under R version 3.1.3
-```
-
-```r
 library(lubridate)
-```
-
-```
-## Warning: package 'lubridate' was built under R version 3.1.3
-```
-
-```
-## 
-## Attaching package: 'lubridate'
-## 
-## The following object is masked from 'package:plyr':
-## 
-##     here
-```
-
-```r
 library(lattice)
-```
-
-```
-## Warning: package 'lattice' was built under R version 3.1.3
-```
-
-```r
 library(knitr)
-```
-
-```
-## Warning: package 'knitr' was built under R version 3.1.3
 ```
 
 ## Loading and preprocessing the data
@@ -149,7 +108,7 @@ sum(is.na(data$steps))
 ## [1] 2304
 ```
 
-    Devise a strategy for filling in all of the missing values in the dataset. The strategy does not need to be sophisticated. For example, you could use the mean/median for that day, or the mean for that 5- minute interval, etc.
+Devise a strategy for filling in all of the missing values in the dataset. The strategy does not need to be sophisticated. For example, you could use the mean/median for that day, or the mean for that 5- minute interval, etc.
 
 
 ```r
@@ -157,7 +116,7 @@ sub_nas <- data[is.na(data),]
 sub_nas$steps <- merge(steps_pattern, sub_nas)$average_steps
 ```
 
-    Create a new dataset that is equal to the original dataset but with the missing data filled in.
+Create a new dataset that is equal to the original dataset but with the missing data filled in.
 
 
 ```r
@@ -167,7 +126,7 @@ data_fill[is.na(data),] <- sub_nas
 daily_steps_fill <- tapply(data_fill$steps,data_fill$date,function(x) sum(x,na.rm=TRUE))
 ```
 
-    Make a histogram of the total number of steps taken each day and Calculate and report the mean and median total number of steps taken per day. Do these values differ from the estimates from the first part of the assignment? What is the impact of imputing missing data on the estimates of the total daily number of steps?
+Make a histogram of the total number of steps taken each day and Calculate and report the mean and median total number of steps taken per day. Do these values differ from the estimates from the first part of the assignment? What is the impact of imputing missing data on the estimates of the total daily number of steps?
 
 
 ```r
@@ -185,7 +144,7 @@ qplot(daily_steps_fill-steps_day, binwidth = 1000, xlab='Total steps', ylab='Fre
 
 ## Are there differences in activity patterns between weekdays and weekends?
 
-The dataset with the filled-in missing values is used. 1. A new factor variable is created in the dataset with two levels вЂ“ вЂњweekdayвЂќ and вЂњweekendвЂќ indicating whether a given date is a weekday or weekend day. 2. A panel plot containing a time series plot (i.e. type = вЂњlвЂќ ) of the 5-minute interval (x-axis) and the average number of steps taken is constructed, averaged across all weekday days or weekend days (y-axis).
+The dataset with the filled-in missing values is used. 1. A new factor variable is created in the dataset with two levels – “weekday” and “weekend” indicating whether a given date is a weekday or weekend day. 2. A panel plot containing a time series plot (i.e. type = “l” ) of the 5-minute interval (x-axis) and the average number of steps taken is constructed, averaged across all weekday days or weekend days (y-axis).
 
 
 ```r
